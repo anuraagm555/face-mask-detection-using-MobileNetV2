@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Face Mask Detection</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}" />
+  </head>
+  <body>
+    <main class="layout">
+      <section class="hero">
+        <p class="kicker">Computer Vision · MobileNetV2 · Flask</p>
+        <h1>Face Mask Detection System</h1>
+        <p class="subtitle">
+          Real-time mask classification from your browser camera feed.
+        </p>
+        <div class="status-wrap">
+          <span class="status-label">System Status</span>
+          <span id="status" class="status-value">Initializing...</span>
+        </div>
+        {% if startup_error %}
+        <p class="error-box">
+          Model load error: {{ startup_error }}. Train the model and restart Flask.
+        </p>
+        {% endif %}
+      </section>
+
+      <section class="viewer">
+        <div class="video-shell">
+          <video id="video" autoplay playsinline muted></video>
+          <canvas id="overlay"></canvas>
+        </div>
+      </section>
+    </main>
+
+    <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+  </body>
+</html>
